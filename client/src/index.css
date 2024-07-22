@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* font-family: "Poppins", sans-serif; */
+/* font-family: "Playfair Display", serif; */
+
+/* navbar css */
+.navbar {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.3rem;
+  text-transform: uppercase;
+  background-color: #fff;
+  box-shadow: 0 8px 6px -6px gray;
+  border-bottom: 0.5rem gray !important;
+}
+.nav-link {
+  font-weight: 400 !important;
+}
+
+.active {
+  border-bottom: 0.2rem solid black;
+}
+
+.nav-link:hover {
+  background: #ececec;
+  color: #0f0f0f;
+  border-radius: 0.7vh;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-family: "roboto", sans-serif;
+  letter-spacing: 1.5px;
+}
+
+.MdWorkHistory {
+  margin-right: 0.8rem;
+  margin-bottom: 0.4rem;
+  font-size: 3vh;
+}
+
+/* Footer */
+.footer {
+  background-color: #000;
+  color: #fff;
+  background: -webkit-linear-gradient(to right, #434343, #000);
+  padding: 0.4rem 0;
+  font-size: 0rem;
+  text-align: center;
+  background: linear-gradient(to right, #434343, #000);
+}
+
+.footer a {
+  text-decoration: none;
+  color: #fff;
+  padding: 0.6vh;
+}
+
+.footer a:hover {
+  color: #c5c3c3;
+  border-bottom: 1px solid;
+}
+
+/* page not found */
+.pnf {
+  display: flex;
+  min-height: 65vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.pnf-title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.pnf-btn {
+  color: #000;
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #a5a3a3;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+.pnf-btn:hover {
+  color: white;
+  background-color: #a5a3a3;
+}
+
+.contactusIcon {
+  font-size: 1.5rem;
+}
+
+.col-md-6 {
+  display: flex;
+  margin-top: 15vh;
+  /* align-items: center; */
+  justify-content: center;
+}
+.contactusImg {
+  border-radius: 1rem;
+}
+.col-md-4 {
+  margin-top: 15vh;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.col-md-4 h1 {
+  border-radius: 0.5rem;
+}
+
+/* register page */
+
+.register {
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  justify-content: center;
+  flex-direction: column; */
+ 
+}
+.regHeading{
+  /* margin-bottom: 4vh; */
+  /* border: 1px solid black; */
+}
+
+.regForm{
+  /* background-color: rgb(245, 248, 245); */
+  /* width: 40vh; */
+  /* border: 2px solid rgb(210, 211, 212); */
+  /* padding: 2rem;
+  border-radius: 1rem; */
+}
+
+.product-link{
+  text-decoration: none !important;
+  color: #000 !important;
+}
