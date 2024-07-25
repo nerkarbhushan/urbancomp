@@ -178,7 +178,8 @@ export const testController = (req, res) => {
 //update profile
 export const updateProfileController = async (req, res) => {
   try {
-    const { name, email, phone, password, address } = req.body;
+    const { name, email, phone, password, latitude, longitude, address } =
+      req.body;
     const user = await userModel.findById(req.user._id);
     // password
     if (password && password.length < 6) {
@@ -252,7 +253,6 @@ export const getAllOrdersController = async (req, res) => {
 };
 
 //order status update
-
 export const orderStatusController = async (req, res) => {
   try {
     const { orderId } = req.params;
@@ -273,29 +273,51 @@ export const orderStatusController = async (req, res) => {
   }
 };
 
+//order status delete
+export const orderDeleteController = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const orders = await orderModel.findByIdAndDelete(orderId);
+    res.json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in deleting order",
+      error,
+    });
+  }
+};
+
 // nearest service provider
 export const getNearestServiceProviderController = async (req, res) => {
   try {
-    const { latitude } = req.body.latitude;
-    const { longitude } = req.body.longitude;
+    const latitude = req.body.latitude;
+    const longitude = req.body.longitude;
+    const range = 1000;
+    const distance = parseFloat(range) * 1609;
+
     const productData = await productModel.aggregate([
       {
         $geoNear: {
           near: {
             type: "Point",
-            coordinates: [parseFloat(longitude), parseFloat(latitude)],
+            coordinates: [parseFloat(latitude), parseFloat(longitude)],
           },
           key: "location",
           distanceField: "dist.calculated",
-          // maxDistance: parseFloat(1000) * 1609,
+          maxDistance: distance,
           spherical: true,
         },
       },
     ]);
+    const productObj = productData.filter(
+      (product) => product._id.toString() === req.body.pid
+    );
     res.status(200).send({
       success: true,
       message: "service provider details",
-      data: productData,
+      data: productObj[0],
     });
   } catch (error) {
     res.status(500).send({ success: false, message: error.message });

@@ -9,6 +9,7 @@ import {
   getAllOrdersController,
   orderStatusController,
   getNearestServiceProviderController,
+  orderDeleteController,
 } from "../controllers/authController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
@@ -56,9 +57,17 @@ router.put(
   orderStatusController
 );
 
+//order status delete
+router.delete(
+  "/order-delete/:orderId",
+  requireSignIn,
+  isAdmin,
+  orderDeleteController
+);
+
 // nearest service provider
 router.post(
-  "/nearest-service-provider",
+  "/nearest-service",
   requireSignIn,
   getNearestServiceProviderController
 );

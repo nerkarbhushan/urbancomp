@@ -2,7 +2,6 @@ import productModel from "../models/productModel.js";
 import slugify from "slugify";
 import fs from "fs";
 import categoryModel from "../models/categoryModel.js";
-// import { error } from "console";
 import braintree from "braintree";
 import orderModel from "../models/orderModel.js";
 import dotenv from "dotenv";
@@ -31,6 +30,10 @@ export const createProductController = async (req, res) => {
       shipping,
     } = req.fields;
     const { photo } = req.files;
+    const location = {
+      type: "Point",
+      coordinates: [parseFloat(latitude), parseFloat(longitude)], // Replace with your longitude and latitude
+    };
 
     // validation
     switch (true) {
@@ -58,16 +61,19 @@ export const createProductController = async (req, res) => {
         return res.status(500).send({
           error: "longitude is required.",
         });
-      // case !quantity:
-      //   return res.status(500).send({
-      //     error: "quantity is required.",
-      //   });
+
       case photo:
         return res.status(500).send({
           error: "photo is required.",
         });
     }
-    const products = new productModel({ ...req.fields, slug: slugify(name) });
+
+    const products = new productModel({
+      ...req.fields,
+      location: location,
+
+      slug: slugify(name),
+    });
     if (photo) {
       products.photo.data = fs.readFileSync(photo.path);
       products.photo.contentType = photo.type;
@@ -297,23 +303,6 @@ export const productListController = async (req, res) => {
   try {
     const perPage = 10;
     const page = req.params.page ? req.params.page : 1;
-    // const findNearLocation = async (latitude, longitude) => {
-    //   const productData = await productModel.aggregate([
-    //     {
-    //       $geoNear: {
-    //         near: {
-    //           type: "Point",
-    //           coordinates: [parseFloat(longitude), parseFloat(latitude)],
-    //         },
-    //         key: "location",
-    //         distanceField: "dist.calculated",
-    //         maxDistance: parseFloat(1000) * 1609,
-    //         spherical: true,
-    //       },
-    //     },
-    //   ]);
-    //   return productData;
-    // };
     const products = await productModel
       .find({})
       .select("-photo")
