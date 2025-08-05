@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-// import { LoaderIcon } from "react-hot-toast";
+// import { LoaderIcon } from "react-hot-toast"
 import { useNavigate,useLocation } from "react-router-dom";
 
 const Spinner = ({path = "login"}) => {
