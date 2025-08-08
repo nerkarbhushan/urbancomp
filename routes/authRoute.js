@@ -16,7 +16,7 @@ import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 //router 
 const router = express.Router();
 
-//routing
+//routings
 //resgister||Method POST
 
 router.post("/register", registerController);
