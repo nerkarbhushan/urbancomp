@@ -45,7 +45,7 @@ router.put("/profile", requireSignIn, updateProfileController);
 //orders || Method Get
 router.get("/orders", requireSignIn, getOrdersController);
 
-//all orders
+//all orders || Method GET
 router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
 
 //order status update
