@@ -39,7 +39,7 @@ router.put(
   updateProductController
 );
 
-//get products
+//get products || method GET
 router.get("/get-product", getProductController);
 
 //single product
